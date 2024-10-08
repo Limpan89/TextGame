@@ -8,25 +8,48 @@ namespace TextGame.Classes
 {
     public class Game
     {
-        public List<string> Verbs { get; set; }
-        public List<string> Nouns { get; set; }
+        public Dictionary<string, (string, string)> Shorthands { get; set; }
+        public Dictionary<string, string> Verbs { get; set; }
+        public Dictionary<string, string> Nouns { get; set; }
         public List<string> Prepositions { get; set; }
         public Player Player { get; set; }
 
+        public Game() { }
+
+        public bool IsShorthand(string word)
+        {
+            return Shorthands.ContainsKey(word.ToLower());
+        }
+
         public bool IsVerb(string word)
         {
-            return Verbs.Contains(word.ToLower());
+            return Verbs.ContainsKey(word.ToLower());
         }
 
         public bool IsNoun(string word)
         {
             return GetVisibleGameObjects(true).Any(go => go.Name.ToLower() == word.ToLower())
-                   || Nouns.Contains(word.ToLower());
+                   || Nouns.ContainsKey(word.ToLower());
         }
 
         public bool IsPreposition(string word)
         {
             return Prepositions.Contains(word.ToLower());
+        }
+
+        public void ExecuteCommands(string shorthand)
+        {
+            Console.WriteLine($"Shorthand Command: {shorthand}");
+        }
+
+        public void ExecuteCommands(string verb, string noun)
+        {
+            Console.WriteLine($"Normal Command: {verb} and {noun}");
+        }
+
+        public void ExecuteCommands(string verb, string noun1, string noun2)
+        {
+            Console.WriteLine($"Double Command: {verb} and {noun1} with {noun2}");
         }
 
         private List<GameObject> GetVisibleGameObjects(bool includePlayer)

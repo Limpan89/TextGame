@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class Room
+    public class Room : GameObject
     {
         public List<GameObject> Exits { get; set; }
+
+        public Room(string name) : base(name, true, false)
+        {
+            Exits = new List<GameObject>();
+        }
     }
 }

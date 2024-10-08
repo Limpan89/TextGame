@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public static class Repository
+    public class Repository
     {
-        public static void LoadGame() 
+        private readonly string _path;
+
+        public Repository(string path)
+        {
+            _path = path;
+        }
+
+        public void LoadGame()
+        {
+
+        }
 
     }
 }
