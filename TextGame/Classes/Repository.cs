@@ -1,24 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace TextGame.Classes
 {
-    public class Repository
+    public static class Repository
     {
-        private readonly string _path;
+        private static readonly string _pathGame = @"C:\Users\lbrob\source\repos\TextGame\TextGame\Data\game_data.json";
 
-        public Repository(string path)
+        public static Game LoadGame()
         {
-            _path = path;
+            Game game = new Game();
+
+            using (StreamReader reader = new StreamReader(_pathGame))
+            {
+                string gameJSON = reader.ReadToEnd();
+                game = JsonSerializer.Deserialize<Game>(gameJSON);
+            }
+            return game;
         }
 
-        public void LoadGame()
+        public static void LoadRoomsAndItems()
         {
 
         }
 
+        public static void LoadExitsGame()
+        {
+
+        }
+
+        public static void LoadItem(string name)
+        {
+
+        }
     }
 }

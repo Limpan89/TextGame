@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
+    [JsonDerivedType(typeof(GameObject), typeDiscriminator: "base")]
+    [JsonDerivedType(typeof(Room), typeDiscriminator: "room")]
+    [JsonDerivedType(typeof(Player), typeDiscriminator: "player")]
+    [JsonDerivedType(typeof(Exit), typeDiscriminator: "exit")]
     public class GameObject
     {
         public string Name { get; set; }
@@ -14,12 +19,6 @@ namespace TextGame.Classes
         public bool Visable { get; set; }
         public bool Movable { get; set; }
 
-        public GameObject(string name, bool visable, bool movable)
-        {
-            Name = name;
-            Visable = visable;
-            Movable = movable;
-            Items = new List<GameObject>();
-        }
+        public GameObject() { }
     }
 }

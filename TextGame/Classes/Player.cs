@@ -10,9 +10,6 @@ namespace TextGame.Classes
     {
         public Room CurrentRoom { get; set; }
 
-        public Player(string name, Room startingRoom) : base(name, true, true) 
-        {
-            CurrentRoom = startingRoom;
-        }
+        public Player() { }
     }
 }

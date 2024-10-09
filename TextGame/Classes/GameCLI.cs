@@ -12,11 +12,12 @@ namespace TextGame.Classes
 
         public GameCLI()
         {
-        TextGame = new Game();
+            TextGame = Repository.LoadGame();
         }
 
         public void Run()
         {
+            Repository.LoadGame();
             while (true)
             {
                 if (ParseCommand(ReadCommand("Command"), out List<string> commands))

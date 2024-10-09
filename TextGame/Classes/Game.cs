@@ -8,7 +8,7 @@ namespace TextGame.Classes
 {
     public class Game
     {
-        public Dictionary<string, (string, string)> Shorthands { get; set; }
+        public Dictionary<string, Tuple<string, string>> Shorthands { get; set; }
         public Dictionary<string, string> Verbs { get; set; }
         public Dictionary<string, string> Nouns { get; set; }
         public List<string> Prepositions { get; set; }
