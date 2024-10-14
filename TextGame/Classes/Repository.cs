@@ -1,10 +1,12 @@
-﻿using System.Text.Json;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
 
 namespace TextGame.Classes
 {
     public static class Repository
     {
         private static readonly string _pathGame = @"C:\Users\lbrob\source\repos\TextGame\TextGame\Data\game_data.json";
+        private static readonly string _pathItems = @"C:\Users\lbrob\source\repos\TextGame\TextGame\Data\game_items.json";
 
         public static Game LoadGame()
         {
@@ -15,17 +17,29 @@ namespace TextGame.Classes
                 string gameJSON = reader.ReadToEnd();
                 game = JsonSerializer.Deserialize<Game>(gameJSON);
             }
+            var data = LoadGameItems();
+            game.Player = data.Item1;
+            game.Player.CurrentRoom = data.Item2.Where(r => r.Name == data.Item3[0]).SingleOrDefault();
+            for (int i = 2; i < data.Item2.Count(); i++)
+            {
+                var exitData = data.Item3[i].Split('*');
+                data.Item2.Where(r => r.Name == exitData[0]).SingleOrDefault().Exits[exitData[1]].Room
+                    = data.Item2.Where(r => r.Name == exitData[2]).SingleOrDefault();
+            }
             return game;
         }
 
-        public static void LoadRoomsAndItems()
+        private static Tuple<Player, List<Room>, List<string>> LoadGameItems()
         {
+            Tuple<Player, List<Room>, List<string>> data;
 
-        }
-
-        public static void LoadExitsGame()
-        {
-
+            using (StreamReader reader = new StreamReader(_pathItems))
+            {
+                string gameJSON = reader.ReadToEnd();
+                data = JsonSerializer.Deserialize<Tuple<Player, List<Room>, List<string>>>(gameJSON);
+            }
+            return data;
+            
         }
 
         public static void LoadItem(string name)

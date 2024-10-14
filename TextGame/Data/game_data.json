@@ -89,6 +89,7 @@
     "x": "examine",
     "examine": "examine",
     "look": "examine",
+    "get": "take",
     "take": "take",
     "drop": "drop",
     "go": "go",
@@ -120,6 +121,7 @@
     "inventory": "*inventory"
   },
   "Prepositions": [
-    "with"
+    "with",
+    "on"
   ]
 }

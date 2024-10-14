@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class Player : GameObject
+    public class Player : GameContainer
     {
         public Room CurrentRoom { get; set; }
 

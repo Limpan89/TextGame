@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class Room : GameObject
+    public class Room : GameContainer
     {
         public Dictionary<string, Exit> Exits { get; set; }
+        public bool EndPoint { get; set; }
 
         public Room() { }
     }

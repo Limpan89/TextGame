@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class Item
+    public class GameContainer : GameObject
     {
+        public List<GameItem> Items { get; set; }
     }
 }

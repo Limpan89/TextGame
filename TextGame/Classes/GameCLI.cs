@@ -17,29 +17,34 @@ namespace TextGame.Classes
 
         public void Run()
         {
-            Repository.LoadGame();
+            bool run = true;
             while (true)
             {
                 if (ParseCommand(ReadCommand("Command"), out List<string> commands))
-                    ExecuteCommand(commands);
+                    run = ExecuteCommand(commands);
                 else
                 {
                     if (commands.Count == 0)
                         Console.WriteLine("I don't understand what you want to do?");
+                    else if (commands[0].ToLower() == "go")
+                        Console.WriteLine("I dont understand where you want to go.");
+                    else if (TextGame.IsVerb(commands[0]))
+                        Console.WriteLine($"I don't understand what you want to {commands[0]}.");
                     else
                         Console.WriteLine($"I don't understand \"{commands[0]}\"");
                 }
             }
         }
 
-        private void ExecuteCommand(List<string> commands)
+        private bool ExecuteCommand(List<string> commands)
         {
+            string output;
             if (commands.Count == 1)
-                TextGame.ExecuteCommands(commands[0]);
+                TextGame.ExecuteCommands(commands[0], out output);
             else if (commands.Count == 2)
-                TextGame.ExecuteCommands(commands[0], commands[1]);
+                TextGame.ExecuteCommands(commands[0], commands[1], out output);
             else
-                TextGame.ExecuteCommands(commands[0], commands[1], commands[2]);
+                TextGame.ExecuteCommands(commands[0], commands[1], commands[2], out output);
         }
 
         private string ReadCommand(string message)
@@ -79,7 +84,10 @@ namespace TextGame.Classes
                         return false;
                     }
                 }
-                word += words[i];
+                if (word.Length == 0)
+                    word = words[i];
+                else
+                    word = $"{word} {words[i]}";
             }
             if (TextGame.IsNoun(word))
                 commands.Add(word);
