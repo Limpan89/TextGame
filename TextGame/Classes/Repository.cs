@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Reflection.PortableExecutable;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
 namespace TextGame.Classes
@@ -7,12 +8,13 @@ namespace TextGame.Classes
     {
         private static readonly string _pathGame = @"C:\Users\lbrob\source\repos\TextGame\TextGame\Data\game_data.json";
         private static readonly string _pathItems = @"C:\Users\lbrob\source\repos\TextGame\TextGame\Data\game_items.json";
+        private static readonly string _pathVocabulary = @"C:\Users\lbrob\source\repos\TextGame\TextGame\Data\game_vocabulary.json";
 
         public static Game LoadGame()
         {
             Game game = new Game();
 
-            using (StreamReader reader = new StreamReader(_pathGame))
+            using (StreamReader reader = new StreamReader(_pathVocabulary))
             {
                 string gameJSON = reader.ReadToEnd();
                 game = JsonSerializer.Deserialize<Game>(gameJSON);
@@ -33,7 +35,7 @@ namespace TextGame.Classes
         {
             Tuple<Player, List<Room>, List<string>> data;
 
-            using (StreamReader reader = new StreamReader(_pathItems))
+            using (StreamReader reader = new StreamReader(_pathGame))
             {
                 string gameJSON = reader.ReadToEnd();
                 data = JsonSerializer.Deserialize<Tuple<Player, List<Room>, List<string>>>(gameJSON);
@@ -42,9 +44,15 @@ namespace TextGame.Classes
             
         }
 
-        public static void LoadItem(string name)
+        public static GameItem LoadItem(string name)
         {
-
+            GameItem gameItem;
+            using (StreamReader reader = new StreamReader(_pathItems))
+            {
+                string itemJSON = reader.ReadToEnd();
+                gameItem = JsonSerializer.Deserialize<List<GameItem>>(itemJSON).Where(gi => gi.Name == name).SingleOrDefault();
+            }
+            return gameItem;
         }
     }
 }

@@ -1,127 +1,143 @@
 {
-  "Shorthands": {
-    "w": {
-      "Item1": "go",
-      "Item2": "west"
+  "Item1": {
+    "Name": "Dr Professor",
+    "Description": "You are the renowned Dr. Professor!",
+    "Items": [],
+    "Room": null
+  },
+  "Item2": [
+    {
+      "Name": "Outside",
+      "Description": "The dence forest goes on forever in every direction. The remenants of a structure stands before you.",
+      "EndPoint": false,
+      "Items": [
+        {
+          "Name": "Mossy Rock",
+          "Description": "A small moss covered rock.",
+          "Visable": true,
+          "Movable": false
+        },
+        {
+          "Name": "Rusty Key",
+          "Description": "A key covered in rust. Hopefully it still works.",
+          "Visable": true,
+          "Movable": true
+        }
+      ],
+      "Exits": {
+        "north": {
+          "Name": "Rusty Door",
+          "Description": "An old rusty door that have seen better days. Despite the rust it looks to sturdy to break down.",
+          "Room": null,
+          "Locked": true,
+          "Key": "Rusty Key"
+        }
+      }
     },
-    "west": {
-      "Item1": "go",
-      "Item2": "west"
+    {
+      "Name": "Entrance",
+      "Description": "A Small antechamber for the tomb. The air is stale, you might be the first person to breathe it in thousands of years.",
+      "EndPoint": false,
+      "Items": [
+        {
+          "Name": "Stone Pillar",
+          "Description": "The Stone pillar is covered in faded inscriptions in a language you don't know.",
+          "Visable": true,
+          "Movable": false
+        }
+      ],
+      "Exits": {
+        "north": {
+          "Room": null,
+          "Locked": false
+        },
+        "south": {
+          "Room": null,
+          "Locked": false
+        }
+      }
     },
-    "e": {
-      "Item1": "go",
-      "Item2": "east"
+    {
+      "Name": "Great Hall",
+      "Description": "A grand hall. The walls are covered with more mysterious writings. In the center of the hall stands an Ancient Altar.",
+      "EndPoint": false,
+      "Items": [
+        {
+          "Name": "Ancient Altar",
+          "Description": "The altar is dotted with more of the strange writing. There are also pictographs that seams to show the ancient king rising from his grave.",
+          "Visable": true,
+          "Movable": false
+        },
+        {
+          "Name": "Broken Key",
+          "Description": "The key is ancient and broken. You doubt any modern tools could fix it.",
+          "Visable": true,
+          "Movable": true,
+          "Key": "Ancient Tools",
+          "NewItem": "Ancient Key",
+          "UseText": "You successfuly repaired the Broken Key. You now find yourself holding the Ancient Key"
+        }
+      ],
+      "Exits": {
+        "west": {
+          "Name": "Ancient Door",
+          "Description": "A great stone door blocking your way into the heart of the tomb.",
+          "Room": null,
+          "Locked": true,
+          "Key": "Ancient Key"
+        },
+        "east": {
+          "Room": null,
+          "Locked": false
+        },
+        "south": {
+          "Room": null,
+          "Locked": false
+        }
+      }
     },
-    "east": {
-      "Item1": "go",
-      "Item2": "east"
+    {
+      "Name": "Collapsed Corridor",
+      "Description": "",
+      "EndPoint": false,
+      "Items": [
+        {
+          "Name": "Ancient Tools",
+          "Description": "A set of strange tools.",
+          "Visible": true,
+          "Movable": true
+        }
+      ],
+      "Exits": {
+        "east": {
+          "Room": null,
+          "Locked": false
+        }
+      }
     },
-    "n": {
-      "Item1": "go",
-      "Item2": "north"
-    },
-    "north": {
-      "Item1": "go",
-      "Item2": "north"
-    },
-    "s": {
-      "Item1": "go",
-      "Item2": "south"
-    },
-    "south": {
-      "Item1": "go",
-      "Item2": "south"
-    },
-    "ne": {
-      "Item1": "go",
-      "Item2": "north east"
-    },
-    "north east": {
-      "Item1": "go",
-      "Item2": "north east"
-    },
-    "nw": {
-      "Item1": "go",
-      "Item2": "north west"
-    },
-    "north west": {
-      "Item1": "go",
-      "Item2": "north west"
-    },
-    "se": {
-      "Item1": "go",
-      "Item2": "south east"
-    },
-    "south east": {
-      "Item1": "go",
-      "Item2": "south east"
-    },
-    "sw": {
-      "Item1": "go",
-      "Item2": "south west"
-    },
-    "south west": {
-      "Item1": "go",
-      "Item2": "south west"
-    },
-    "in": {
-      "Item1": "go",
-      "Item2": "in"
-    },
-    "out": {
-      "Item1": "go",
-      "Item2": "out"
-    },
-    "x": {
-      "Item1": "examine",
-      "Item2": "*room"
-    },
-    "examine": {
-      "Item1": "examine",
-      "Item2": "*room"
-    },
-    "look": {
-      "Item1": "examine",
-      "Item2": "*room"
+    {
+      "Name": "Ancient Tomb",
+      "Description": "The heart of the ancient tomb. Before you lies countless treasures. In the center of the room rests the ancient king in his coffin.",
+      "EndPoint": true,
+      "Items": [],
+      "Exits": {
+        "south": {
+          "Room": null,
+          "Locked": false
+        }
+      }
     }
-  },
-  "Verbs": {
-    "x": "examine",
-    "examine": "examine",
-    "look": "examine",
-    "get": "take",
-    "take": "take",
-    "drop": "drop",
-    "go": "go",
-    "use": "use",
-    "open": "open",
-    "unlock": "open"
-  },
-  "Nouns": {
-    "w": "west",
-    "west": "west",
-    "e": "east",
-    "east": "east",
-    "n": "north",
-    "north": "north",
-    "s": "south",
-    "south": "south",
-    "nw": "north west",
-    "north west": "north west",
-    "ne": "north east",
-    "north east": "north east",
-    "sw": "south west",
-    "south west": "south west",
-    "se": "south east",
-    "south east": "south east",
-    "me": "*player",
-    "myself": "*player",
-    "yourself": "*player",
-    "player": "*player",
-    "inventory": "*inventory"
-  },
-  "Prepositions": [
-    "with",
-    "on"
+  ],
+  "Item3": [
+    "Outside",
+    "Outside*north*Entrance",
+    "Entrance*south*Outside",
+    "Entrance*north*Great Hall",
+    "Great Hall*south*Entrance",
+    "Great Hall*west*Ancient Tomb",
+    "Great Hall*east*Collapsed Corridor",
+    "Collapsed Corridor*west*Great Hall"
   ]
 }
+
+

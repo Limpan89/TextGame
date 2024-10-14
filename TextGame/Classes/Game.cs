@@ -47,12 +47,12 @@ namespace TextGame.Classes
         public bool ExecuteCommands(string verb, string noun, out string output)
         {
             if 
-            return true;
+            return !Player.CurrentRoom.EndPoint;
         }
 
         public bool ExecuteCommands(string verb, string noun1, string noun2, out string output)
         {
-            return true;
+            return !Player.CurrentRoom.EndPoint;
         }
 
         private string Examine(GameObject go)
@@ -100,14 +100,16 @@ namespace TextGame.Classes
             return $"You take the {gameItem.Name} and place it in your inventory.";
         }
 
-        private string Use(GameItem gameItem)
-        {
-
-        }
-
         private string Use(GameItem gameItem, GameObject go)
         {
-
+            string output = go.Use(gameItem);
+            if (go is GameItem gi && gi.Key != null && gi.Key == gameItem.Name)
+            {
+                if (!Player.Items.Remove(gi))
+                    Player.CurrentRoom.Items.Remove(gi);
+                Player.Items.Add(Repository.LoadItem(gi.NewItem));
+            }
+            return output ;
         }
 
         private List<GameObject> GetVisibleItems()

@@ -1,0 +1,127 @@
+{
+  "Shorthands": {
+    "w": {
+      "Item1": "go",
+      "Item2": "west"
+    },
+    "west": {
+      "Item1": "go",
+      "Item2": "west"
+    },
+    "e": {
+      "Item1": "go",
+      "Item2": "east"
+    },
+    "east": {
+      "Item1": "go",
+      "Item2": "east"
+    },
+    "n": {
+      "Item1": "go",
+      "Item2": "north"
+    },
+    "north": {
+      "Item1": "go",
+      "Item2": "north"
+    },
+    "s": {
+      "Item1": "go",
+      "Item2": "south"
+    },
+    "south": {
+      "Item1": "go",
+      "Item2": "south"
+    },
+    "ne": {
+      "Item1": "go",
+      "Item2": "north east"
+    },
+    "north east": {
+      "Item1": "go",
+      "Item2": "north east"
+    },
+    "nw": {
+      "Item1": "go",
+      "Item2": "north west"
+    },
+    "north west": {
+      "Item1": "go",
+      "Item2": "north west"
+    },
+    "se": {
+      "Item1": "go",
+      "Item2": "south east"
+    },
+    "south east": {
+      "Item1": "go",
+      "Item2": "south east"
+    },
+    "sw": {
+      "Item1": "go",
+      "Item2": "south west"
+    },
+    "south west": {
+      "Item1": "go",
+      "Item2": "south west"
+    },
+    "in": {
+      "Item1": "go",
+      "Item2": "in"
+    },
+    "out": {
+      "Item1": "go",
+      "Item2": "out"
+    },
+    "x": {
+      "Item1": "examine",
+      "Item2": "*room"
+    },
+    "examine": {
+      "Item1": "examine",
+      "Item2": "*room"
+    },
+    "look": {
+      "Item1": "examine",
+      "Item2": "*room"
+    }
+  },
+  "Verbs": {
+    "x": "examine",
+    "examine": "examine",
+    "look": "examine",
+    "get": "take",
+    "take": "take",
+    "drop": "drop",
+    "go": "go",
+    "use": "use",
+    "open": "open",
+    "unlock": "open"
+  },
+  "Nouns": {
+    "w": "west",
+    "west": "west",
+    "e": "east",
+    "east": "east",
+    "n": "north",
+    "north": "north",
+    "s": "south",
+    "south": "south",
+    "nw": "north west",
+    "north west": "north west",
+    "ne": "north east",
+    "north east": "north east",
+    "sw": "south west",
+    "south west": "south west",
+    "se": "south east",
+    "south east": "south east",
+    "me": "*player",
+    "myself": "*player",
+    "yourself": "*player",
+    "player": "*player",
+    "inventory": "*inventory"
+  },
+  "Prepositions": [
+    "with",
+    "on"
+  ]
+}

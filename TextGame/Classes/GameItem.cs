@@ -13,13 +13,12 @@ namespace TextGame.Classes
         public string Key { get; set; }
         public string NewItem { get; set; }
         public string UseText { get; set; }
+
         public override string Use(GameObject go)
         {
             if (go.Name != Key)
                 return $"You can't use {go.Name} with {Name}.";
             return UseText;
         }
-
-        public getNewItem()
     }
 }
