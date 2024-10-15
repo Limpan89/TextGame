@@ -8,6 +8,8 @@ namespace TextGame.Classes
 {
     public class Game
     {
+        public string Intro { get; set; }
+        public string Outro { get; set; }
         public Dictionary<string, Tuple<string, string>> Shorthands { get; set; }
         public Dictionary<string, string> Verbs { get; set; }
         public Dictionary<string, string> Nouns { get; set; }
@@ -39,25 +41,95 @@ namespace TextGame.Classes
 
         public bool ExecuteCommands(string shorthand, out string output)
         {
-            bool run = ExecuteCommands(Shorthands[shorthand].Item1, Shorthands[shorthand].Item2, out string text);
-            output = text;
-            return run;
+            return ExecuteCommands(Shorthands[shorthand].Item1, Shorthands[shorthand].Item2, out output);
         }
 
         public bool ExecuteCommands(string verb, string noun, out string output)
         {
-            if 
+            if (!Verbs.TryGetValue(verb.ToLower(), out string cmdVerb))
+            {
+                output = $"I don't know the word {verb}";
+                return !Player.CurrentRoom.EndPoint;
+            }
+            GameObject go = null;
+            string cmdNoun = null; ;
+            if (Nouns.TryGetValue(noun.ToLower(), out cmdNoun))
+            {
+                if (cmdNoun[0] == '*')
+                {
+                    switch(cmdNoun)
+                    {
+                        case "*player":
+                            go = Player;
+                            break;
+                        case "*room":
+                            go = Player.CurrentRoom;
+                            break;
+                    }
+                }
+            }
+            if (cmdNoun == null)
+                go = GetVisibleItems().Where(go => go.Name.ToLower() == noun.ToLower()).SingleOrDefault();
+
+            if (go == null && cmdNoun == null)
+            {
+                output = $"I don't know the word {noun}";
+                return !Player.CurrentRoom.EndPoint;
+            }
+
+
+            output = "You can't do that.";
+            switch (cmdVerb)
+            {
+                case "take":
+                    if (go != null && go is GameItem take)
+                        output = Take(take);
+                    break;
+                case "drop":
+                    if (go != null && go is GameItem drop)
+                        output = Drop(drop);
+                    break;
+                case "examine":
+                    if (go != null)
+                        output = Examine(go);
+                    break;
+                case "go":
+                    if (cmdNoun != null)
+                        output = Go(cmdNoun);
+                    break;
+                case "use":
+                    output = $"I don't understand what you want to use {noun} with?";
+                    break;
+            }
             return !Player.CurrentRoom.EndPoint;
         }
 
         public bool ExecuteCommands(string verb, string noun1, string noun2, out string output)
         {
+            if (!Verbs.TryGetValue(verb.ToLower(), out string cmdVerb))
+            {
+                output = $"I don't know the word {verb}";
+                return !Player.CurrentRoom.EndPoint;
+            }
+            if (cmdVerb != "use")
+            {
+                output = "You can't do that";
+                return !Player.CurrentRoom.EndPoint;
+            }
+            output = "You can't do that";
+            GameObject go = GetVisibleItems().Where(go => go.Name.ToLower() == noun1.ToLower()).SingleOrDefault();
+            if (go != null && go is GameItem gi)
+            {
+                go = GetVisibleItems().Where(go => go.Name.ToLower() == noun2.ToLower()).SingleOrDefault();
+                if (go != null)
+                    output = Use(gi, go);
+            }
             return !Player.CurrentRoom.EndPoint;
         }
 
         private string Examine(GameObject go)
         {
-            return go.Description;
+            return go.Examine();
         }
 
         private string Go(string direction)
@@ -107,7 +179,7 @@ namespace TextGame.Classes
             {
                 if (!Player.Items.Remove(gi))
                     Player.CurrentRoom.Items.Remove(gi);
-                Player.Items.Add(Repository.LoadItem(gi.NewItem));
+                Player.Items.Add(FileHandler.LoadItem(gi.NewItem));
             }
             return output ;
         }

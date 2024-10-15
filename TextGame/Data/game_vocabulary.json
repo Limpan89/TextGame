@@ -1,4 +1,6 @@
 {
+  "Intro": "Welcome to the ADVENTURE of a lifetime! You are the illustrious Dr. Professor. You have come to this forest in search of an ancient tomb.",
+  "Outro": "You have found the ancient tomb. You examine the many treasures of the tomb. Let's hope they aren't cursed.",
   "Shorthands": {
     "w": {
       "Item1": "go",
@@ -74,15 +76,15 @@
     },
     "x": {
       "Item1": "examine",
-      "Item2": "*room"
+      "Item2": "room"
     },
     "examine": {
       "Item1": "examine",
-      "Item2": "*room"
+      "Item2": "room"
     },
     "look": {
       "Item1": "examine",
-      "Item2": "*room"
+      "Item2": "room"
     }
   },
   "Verbs": {
@@ -93,6 +95,7 @@
     "take": "take",
     "drop": "drop",
     "go": "go",
+    "travel": "go",
     "use": "use",
     "open": "open",
     "unlock": "open"
@@ -114,11 +117,12 @@
     "south west": "south west",
     "se": "south east",
     "south east": "south east",
+    "room": "*room",
     "me": "*player",
     "myself": "*player",
     "yourself": "*player",
     "player": "*player",
-    "inventory": "*inventory"
+    "inventory": "*player"
   },
   "Prepositions": [
     "with",

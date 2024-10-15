@@ -97,19 +97,19 @@
       }
     },
     {
-      "Name": "Collapsed Corridor",
-      "Description": "",
+      "Name": "Collapsed Passage",
+      "Description": "A Collapsed Passage.",
       "EndPoint": false,
       "Items": [
         {
           "Name": "Ancient Tools",
           "Description": "A set of strange tools.",
-          "Visible": true,
+          "Visable": true,
           "Movable": true
         }
       ],
       "Exits": {
-        "east": {
+        "west": {
           "Room": null,
           "Locked": false
         }
@@ -121,7 +121,7 @@
       "EndPoint": true,
       "Items": [],
       "Exits": {
-        "south": {
+        "east": {
           "Room": null,
           "Locked": false
         }
@@ -134,9 +134,10 @@
     "Entrance*south*Outside",
     "Entrance*north*Great Hall",
     "Great Hall*south*Entrance",
+    "Great Hall*east*Collapsed Passage",
     "Great Hall*west*Ancient Tomb",
-    "Great Hall*east*Collapsed Corridor",
-    "Collapsed Corridor*west*Great Hall"
+    "Collapsed Passage*west*Great Hall",
+    "Ancient Tomb*east*Great Hall"
   ]
 }
 

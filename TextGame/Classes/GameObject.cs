@@ -13,7 +13,7 @@ namespace TextGame.Classes
     [JsonDerivedType(typeof(Player), typeDiscriminator: "player")]
     [JsonDerivedType(typeof(Exit), typeDiscriminator: "exit")]
     public abstract class GameObject
-    {;
+    {
         public Dictionary<string, Func<Game, string>> Funcs { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -22,6 +22,11 @@ namespace TextGame.Classes
         {
             Funcs = new Dictionary<string, Func<Game, string>>();
             Func<Game, string> func = (Game game) => { return ""; };
+        }
+
+        public virtual string Examine()
+        {
+            return Description;
         }
 
         public virtual string Use(GameObject game)

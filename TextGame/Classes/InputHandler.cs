@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class GameCLI
+    public class InputHandler
     {
         public Game TextGame { get; set; }
 
-        public GameCLI()
+        public InputHandler()
         {
-            TextGame = Repository.LoadGame();
+            TextGame = FileHandler.LoadGame();
         }
 
         public void Run()
         {
             bool run = true;
-            while (true)
+            Console.WriteLine(TextGame.Intro);
+            while (run)
             {
                 if (ParseCommand(ReadCommand("Command"), out List<string> commands))
                     run = ExecuteCommand(commands);
@@ -34,17 +35,21 @@ namespace TextGame.Classes
                         Console.WriteLine($"I don't understand \"{commands[0]}\"");
                 }
             }
+            Console.WriteLine(TextGame.Outro);
         }
 
         private bool ExecuteCommand(List<string> commands)
         {
+            bool run;
             string output;
             if (commands.Count == 1)
-                TextGame.ExecuteCommands(commands[0], out output);
+                run = TextGame.ExecuteCommands(commands[0], out output);
             else if (commands.Count == 2)
-                TextGame.ExecuteCommands(commands[0], commands[1], out output);
+                run = TextGame.ExecuteCommands(commands[0], commands[1], out output);
             else
-                TextGame.ExecuteCommands(commands[0], commands[1], commands[2], out output);
+                run = TextGame.ExecuteCommands(commands[0], commands[1], commands[2], out output);
+            Console.WriteLine(output);
+            return run;
         }
 
         private string ReadCommand(string message)
@@ -77,6 +82,7 @@ namespace TextGame.Classes
                     {
                         commands.Add(word);
                         word = "";
+                        continue;
                     }
                     else
                     {

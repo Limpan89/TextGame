@@ -6,7 +6,7 @@ namespace TextGame
     {
         public static void Main(string[] args)
         {
-            GameCLI game = new GameCLI();
+            InputHandler game = new InputHandler();
             game.Run();
         }
     }
