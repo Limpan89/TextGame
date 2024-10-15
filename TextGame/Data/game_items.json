@@ -1,10 +1,8 @@
-{
-  [
-    {
-      "Name": "Ancient Key",
-      "Description": "The Key looks to be increadibly old.",
-      "Visable": true,
-      "Movable": true
-    }
-  ]
-}
+[
+  {
+    "Name": "Ancient Key",
+    "Description": "The Key looks to be increadibly old.",
+    "Visable": true,
+    "Movable": true
+  }
+]
