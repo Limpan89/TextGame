@@ -14,7 +14,7 @@ namespace TextGame.Classes
         public static Game LoadGame()
         {
             Game game = LoadData<Game>(_pathVocabulary);
-            var data = LoadData<Tuple<Player, List<Room>, List<string>>>(_pathGame);
+            var data = LoadData<Tuple<Player, List<Room>, List<string>>>(_pathGame); // Item1 = Player, Item2 = Rooms, Item3 = Strings tthat's used to connect the rooms
             game.Player = data.Item1;
             game.Player.CurrentRoom = data.Item2.Where(r => r.Name == data.Item3[0]).SingleOrDefault();
             for (int i = 1; i < data.Item3.Count(); i++)

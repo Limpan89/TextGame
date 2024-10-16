@@ -1,6 +1,6 @@
 {
   "Intro": "Welcome to the ADVENTURE of a lifetime! You are the illustrious Dr. Professor. You have come to this forest in search of an ancient tomb.",
-  "Outro": "You have found the ancient tomb. You examine the many treasures of the tomb. Let's hope they aren't cursed.",
+  "Outro": "You have found the ancient tomb. It's filled with many wonderfull treasures. Let's hope they aren't cursed.\nCongratulations on beating the Game! You have won!",
   "Shorthands": {
     "w": {
       "Item1": "go",

@@ -30,8 +30,14 @@ namespace TextGame.Classes
                 output = $"The way {direction} is blocked by a {exit.Name}";
                 return this;
             }
-            output = $"You travel {direction}.\n\n{exit.Room.Examine()}";
+            output = $"You travel {direction}.\n\n{exit.Room.Enter()}";
             return exit.Room;
+        }
+
+        public string Enter()
+        {
+            string lines = "==============================================================================";
+            return $"{lines}\n{Name}\n{lines}\n\n{Examine()}";
         }
 
         public override string Examine()

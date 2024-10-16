@@ -18,7 +18,7 @@ namespace TextGame.Classes
 
         public Game() { }
 
-        public bool IsShorthand(string word)
+        public bool IsShorthand(string word) // x shorthand for Examine
         {
             return Shorthands.ContainsKey(word.ToLower());
         }
