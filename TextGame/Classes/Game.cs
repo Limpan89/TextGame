@@ -34,6 +34,15 @@ namespace TextGame.Classes
                    || Nouns.ContainsKey(word.ToLower());
         }
 
+        public bool IsPartialUniqueItemName(string word, out string itemName)
+        {
+            itemName = null;
+            List<string> items = GetVisibleItems().Where(i => i.Name.ToLower().Contains(word.ToLower())).Select(i => i.Name).ToList();
+            if (items.Count == 1)
+                itemName = items[0];
+            return itemName != null;
+        }
+
         public bool IsPreposition(string word)
         {
             return Prepositions.Contains(word.ToLower());

@@ -84,6 +84,12 @@ namespace TextGame.Classes
                         word = "";
                         continue;
                     }
+                    else if (TextGame.IsPartialUniqueItemName(word, out string output))
+                    {
+                        commands.Add(output);
+                        word = "";
+                        continue;
+                    }
                     else
                     {
                         commands = new List<string>() { word };
@@ -97,6 +103,8 @@ namespace TextGame.Classes
             }
             if (TextGame.IsNoun(word))
                 commands.Add(word);
+            else if (TextGame.IsPartialUniqueItemName(word, out string output))
+                commands.Add(output);
             else
             {
                 commands = new List<string>() { word };
