@@ -12,7 +12,27 @@ namespace TextGame.Classes
         public Dictionary<string, Exit> Exits { get; set; }
         public bool EndPoint { get; set; }
 
-        public Room() { }
+        public Room() : base()
+        {
+            Exits = new Dictionary<string, Exit>();
+            EndPoint = false;
+        }
+
+        public Room Go(string direction, out string output)
+        {
+            if (!Exits.TryGetValue(direction, out Exit exit))
+            {
+                output = $"You can't travel {direction}.";
+                return this;
+            }
+            if (exit.Locked)
+            {
+                output = $"The way {direction} is blocked by a {exit.Name}";
+                return this;
+            }
+            output = $"You travel {direction}.\n\n{exit.Room.Examine()}";
+            return exit.Room;
+        }
 
         public override string Examine()
         {

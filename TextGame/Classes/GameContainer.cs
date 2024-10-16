@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class GameContainer : GameObject
+    public abstract class GameContainer : GameObject
     {
         public List<GameItem> Items { get; set; }
+
+        public GameContainer() : base()
+        {
+            Items = new List<GameItem>();
+        }
     }
 }

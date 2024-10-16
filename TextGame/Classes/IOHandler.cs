@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class InputHandler
+    public class IOHandler
     {
         public Game TextGame { get; set; }
 
-        public InputHandler()
+        public IOHandler()
         {
             TextGame = FileHandler.LoadGame();
         }
@@ -26,7 +26,7 @@ namespace TextGame.Classes
                 else
                 {
                     if (commands.Count == 0)
-                        Console.WriteLine("I don't understand what you want to do?");
+                        Console.WriteLine("I don't understand what you want to do.");
                     else if (commands[0].ToLower() == "go")
                         Console.WriteLine("I dont understand where you want to go.");
                     else if (TextGame.IsVerb(commands[0]))

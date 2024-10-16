@@ -14,13 +14,13 @@
         {
           "Name": "Mossy Rock",
           "Description": "A small moss covered rock.",
-          "Visable": true,
+          "Visible": true,
           "Movable": false
         },
         {
           "Name": "Rusty Key",
           "Description": "A key covered in rust. Hopefully it still works.",
-          "Visable": true,
+          "Visible": true,
           "Movable": true
         }
       ],
@@ -42,7 +42,7 @@
         {
           "Name": "Stone Pillar",
           "Description": "The Stone pillar is covered in faded inscriptions in a language you don't know.",
-          "Visable": true,
+          "Visible": true,
           "Movable": false
         }
       ],
@@ -65,13 +65,13 @@
         {
           "Name": "Ancient Altar",
           "Description": "The altar is dotted with more of the strange writing. There are also pictographs that seams to show the ancient king rising from his grave.",
-          "Visable": true,
+          "Visible": true,
           "Movable": false
         },
         {
           "Name": "Broken Key",
           "Description": "The key is ancient and broken. You doubt any modern tools could fix it.",
-          "Visable": true,
+          "Visible": true,
           "Movable": true,
           "Key": "Ancient Tools",
           "NewItem": "Ancient Key",
@@ -104,7 +104,7 @@
         {
           "Name": "Ancient Tools",
           "Description": "A set of strange tools.",
-          "Visable": true,
+          "Visible": true,
           "Movable": true
         }
       ],

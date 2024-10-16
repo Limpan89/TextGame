@@ -1,4 +1,5 @@
-﻿using System.Reflection.PortableExecutable;
+﻿using System.IO;
+using System.Reflection.PortableExecutable;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
@@ -12,14 +13,8 @@ namespace TextGame.Classes
 
         public static Game LoadGame()
         {
-            Game game = new Game();
-
-            using (StreamReader reader = new StreamReader(_pathVocabulary))
-            {
-                string gameJSON = reader.ReadToEnd();
-                game = JsonSerializer.Deserialize<Game>(gameJSON);
-            }
-            var data = LoadGameItems();
+            Game game = LoadData<Game>(_pathVocabulary);
+            var data = LoadData<Tuple<Player, List<Room>, List<string>>>(_pathGame);
             game.Player = data.Item1;
             game.Player.CurrentRoom = data.Item2.Where(r => r.Name == data.Item3[0]).SingleOrDefault();
             for (int i = 1; i < data.Item3.Count(); i++)
@@ -28,33 +23,39 @@ namespace TextGame.Classes
                 data.Item2.Where(r => r.Name == exitData[0]).SingleOrDefault().Exits[exitData[1]].Room
                     = data.Item2.Where(r => r.Name == exitData[2]).SingleOrDefault();
             }
-            if (data.Item2.Where(r => r.Name == "Great Hall").SingleOrDefault().Exits["south"].Room == null)
-                Console.WriteLine("Null");
+            data.Item1.Items.ForEach(i => i.Owner = data.Item1);
+            foreach (Room r in data.Item2)
+                r.Items.ForEach(i => i.Owner = r);
             return game;
-        }
-
-        private static Tuple<Player, List<Room>, List<string>> LoadGameItems()
-        {
-            Tuple<Player, List<Room>, List<string>> data;
-
-            using (StreamReader reader = new StreamReader(_pathGame))
-            {
-                string gameJSON = reader.ReadToEnd();
-                data = JsonSerializer.Deserialize<Tuple<Player, List<Room>, List<string>>>(gameJSON);
-            }
-            return data;
-            
         }
 
         public static GameItem LoadItem(string name)
         {
+            if (!File.Exists(_pathItems))
+                throw new FileNotFoundException($"The file at \"{_pathItems}\" could not be found.");
             GameItem gameItem;
             using (StreamReader reader = new StreamReader(_pathItems))
             {
-                string itemJSON = reader.ReadToEnd();
-                gameItem = JsonSerializer.Deserialize<List<GameItem>>(itemJSON).Where(gi => gi.Name == name).SingleOrDefault();
+                string dataJSON = reader.ReadToEnd();
+                gameItem = JsonSerializer.Deserialize<List<GameItem>>(dataJSON).Where(gi => gi.Name == name).SingleOrDefault();
             }
+            if (gameItem == null)
+                throw new ArgumentException($"No item with the name {name} could be found.");
             return gameItem;
         }
+
+        private static T LoadData<T>(string path)
+        {
+            if (!File.Exists(path))
+                throw new FileNotFoundException($"The file at \"{path}\" could not be found.");
+            T data;
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string dataJSON = reader.ReadToEnd();
+                data = JsonSerializer.Deserialize<T>(dataJSON);
+            }
+            return data;
+        }
+
     }
 }

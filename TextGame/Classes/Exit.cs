@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    public class Exit : GameObject
+    public class Exit : GameUsable
     {
         public Room Room { get; set; }
         public bool Locked { get; set; }
-        public string Key { get; set; }
 
-        public Exit() { }
+        public Exit() : base()
+        {
+            Room = null;
+            Locked = false;
+        }
 
         public override string Use(GameObject go)
         {

@@ -2,7 +2,7 @@
   {
     "Name": "Ancient Key",
     "Description": "The Key looks to be increadibly old.",
-    "Visable": true,
+    "Visible": true,
     "Movable": true
   }
 ]

@@ -48,7 +48,7 @@ namespace TextGame.Classes
         {
             if (!Verbs.TryGetValue(verb.ToLower(), out string cmdVerb))
             {
-                output = $"I don't know the word {verb}";
+                output = $"I don't understand \"{verb}\"";
                 return !Player.CurrentRoom.EndPoint;
             }
             GameObject go = null;
@@ -73,7 +73,7 @@ namespace TextGame.Classes
 
             if (go == null && cmdNoun == null)
             {
-                output = $"I don't know the word {noun}";
+                output = $"I don't understand \"{noun}\"";
                 return !Player.CurrentRoom.EndPoint;
             }
 
@@ -108,7 +108,7 @@ namespace TextGame.Classes
         {
             if (!Verbs.TryGetValue(verb.ToLower(), out string cmdVerb))
             {
-                output = $"I don't know the word {verb}";
+                output = $"I don't understand \"{verb}\"";
                 return !Player.CurrentRoom.EndPoint;
             }
             if (cmdVerb != "use")
@@ -134,61 +134,30 @@ namespace TextGame.Classes
 
         private string Go(string direction)
         {
-            if (!Player.CurrentRoom.Exits.TryGetValue(direction, out Exit exit))
-                return $"You can't travel {direction}.";
-
-            if (exit.Locked)
-                return $"The way {direction} is blocked by a {exit.Name}, you need to find a key.";
-
-            Player.CurrentRoom = exit.Room;
-            return $"You travel {direction}.\n\n{Player.CurrentRoom.Name}\n\n{Player.CurrentRoom.Description}";
+            Player.CurrentRoom = Player.CurrentRoom.Go(direction, out string output);
+            return output;
         }
 
-        private string Take(GameItem gameItem)
+        private string Take(GameItem item)
         {
-            if (Player.Items.Contains(gameItem))
-                return $"You are allready holding the {gameItem.Name}";
-            if (!gameItem.Movable)
-                return $"You can't move the {gameItem.Name}.";
-
-            if (Player.CurrentRoom.Items.Contains(gameItem) && Player.CurrentRoom.Items.Remove(gameItem))
-                Player.Items.Add(gameItem);
-            else
-                return $"You can't find {gameItem.Name}";
-            return $"You take the {gameItem.Name} and place it in your inventory.";
+            return item.Take(Player);
         }
 
-        private string Drop(GameItem gameItem)
+        private string Drop(GameItem item)
         {
-            if (!Player.Items.Contains(gameItem))
-                return $"You aren't holding the {gameItem.Name}";
-            if (!gameItem.Movable)
-                return $"You can't drop the {gameItem.Name}.";
-
-            if (Player.Items.Contains(gameItem) && Player.Items.Remove(gameItem))
-                Player.CurrentRoom.Items.Add(gameItem);
-            else
-                return $"You can't find {gameItem.Name}";
-            return $"You take the {gameItem.Name} and place it in your inventory.";
+            return item.Drop();
         }
 
-        private string Use(GameItem gameItem, GameObject go)
+        private string Use(GameItem item, GameObject go)
         {
-            string output = go.Use(gameItem);
-            if (go is GameItem gi && gi.Key != null && gi.Key == gameItem.Name)
-            {
-                if (!Player.Items.Remove(gi))
-                    Player.CurrentRoom.Items.Remove(gi);
-                Player.Items.Add(FileHandler.LoadItem(gi.NewItem));
-            }
-            return output ;
+            return go.Use(item);
         }
 
         private List<GameObject> GetVisibleItems()
         {
             var visible = new List<GameObject>();
-            visible.AddRange(Player.Items.Where(go => go.Visable));
-            visible.AddRange(Player.CurrentRoom.Items.Where(go => go.Visable));
+            visible.AddRange(Player.Items.Where(go => go.Visible));
+            visible.AddRange(Player.CurrentRoom.Items.Where(go => go.Visible));
             visible.AddRange(Player.CurrentRoom.Exits.Values.Where(v => v.Locked));
             return visible;
         }

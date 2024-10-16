@@ -8,20 +8,15 @@ using System.Threading.Tasks;
 
 namespace TextGame.Classes
 {
-    [JsonDerivedType(typeof(GameObject), typeDiscriminator: "base")]
-    [JsonDerivedType(typeof(Room), typeDiscriminator: "room")]
-    [JsonDerivedType(typeof(Player), typeDiscriminator: "player")]
-    [JsonDerivedType(typeof(Exit), typeDiscriminator: "exit")]
     public abstract class GameObject
     {
-        public Dictionary<string, Func<Game, string>> Funcs { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
         public GameObject()
         {
-            Funcs = new Dictionary<string, Func<Game, string>>();
-            Func<Game, string> func = (Game game) => { return ""; };
+            Name = null;
+            Description = null;
         }
 
         public virtual string Examine()

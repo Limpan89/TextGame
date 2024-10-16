@@ -10,15 +10,15 @@ namespace TextGame.Classes
     {
         public Room CurrentRoom { get; set; }
 
-        public Player() { }
+        public Player() : base() {}
 
         public override string Examine()
         {
             StringBuilder sb = new StringBuilder($"{Description}\n\n");
             if (Items.Count > 0)
-                sb.Append("Inventory: ");
+                sb.Append("You are holding ");
             else
-                sb.Append("Your inventory is empty.");
+                sb.Append("You are not holding anything.");
             for (int i = 0; i < Items.Count; i++)
             {
                 sb.Append(Items[i].Name);
