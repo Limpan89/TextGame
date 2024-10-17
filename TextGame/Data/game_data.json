@@ -2,6 +2,7 @@
   "Item1": {
     "Name": "Dr Professor",
     "Description": "You are the renowned Dr. Professor!",
+    "Id": 1001,
     "Items": [],
     "Room": null
   },
@@ -9,17 +10,20 @@
     {
       "Name": "Outside",
       "Description": "The dence forest goes on forever in every direction. The remenants of a structure stands before you.",
+      "Id": 2001,
       "EndPoint": false,
       "Items": [
         {
           "Name": "Mossy Rock",
           "Description": "A small moss covered rock.",
+          "Id": 3001,
           "Visible": true,
           "Movable": false
         },
         {
           "Name": "Rusty Key",
           "Description": "A key covered in rust. Hopefully it still works.",
+          "Id": 3002,
           "Visible": true,
           "Movable": true
         }
@@ -28,6 +32,7 @@
         "north": {
           "Name": "Rusty Door",
           "Description": "An old rusty door that have seen better days. Despite the rust it looks to sturdy to break down.",
+          "Id": 4001,
           "Room": null,
           "Locked": true,
           "Key": "Rusty Key"
@@ -37,21 +42,25 @@
     {
       "Name": "Entrance",
       "Description": "A Small antechamber for the tomb. The air is stale, you might be the first person to breathe it in thousands of years.",
+      "Id": 2002,
       "EndPoint": false,
       "Items": [
         {
           "Name": "Stone Pillar",
           "Description": "The Stone pillar is covered in faded inscriptions in a language you don't know.",
+          "Id": 3003,
           "Visible": true,
           "Movable": false
         }
       ],
       "Exits": {
         "north": {
+          "Id": 4002,
           "Room": null,
           "Locked": false
         },
         "south": {
+          "Id": 4003,
           "Room": null,
           "Locked": false
         }
@@ -60,17 +69,20 @@
     {
       "Name": "Great Hall",
       "Description": "A grand hall. The walls are covered with more mysterious writings. In the center of the hall stands an Ancient Altar.",
+      "Id": 2003,
       "EndPoint": false,
       "Items": [
         {
           "Name": "Ancient Altar",
           "Description": "The altar is dotted with more of the strange writing. There are also pictographs that seams to show the ancient king rising from his grave.",
+          "Id": 3004,
           "Visible": true,
           "Movable": false
         },
         {
           "Name": "Broken Key",
           "Description": "The key is ancient and broken. You doubt any modern tools could fix it.",
+          "Id": 3005,
           "Visible": true,
           "Movable": true,
           "Key": "Ancient Tools",
@@ -82,15 +94,18 @@
         "west": {
           "Name": "Ancient Door",
           "Description": "A great stone door blocking your way into the heart of the tomb.",
+          "Id": 4004,
           "Room": null,
           "Locked": true,
           "Key": "Ancient Key"
         },
         "east": {
+          "Id": 4005,
           "Room": null,
           "Locked": false
         },
         "south": {
+          "Id": 4006,
           "Room": null,
           "Locked": false
         }
@@ -99,17 +114,20 @@
     {
       "Name": "Collapsed Passage",
       "Description": "A Collapsed Passage.",
+      "Id": 2004,
       "EndPoint": false,
       "Items": [
         {
           "Name": "Ancient Tools",
           "Description": "A set of strange tools.",
+          "Id": 3006,
           "Visible": true,
           "Movable": true
         }
       ],
       "Exits": {
         "west": {
+          "Id": 4007,
           "Room": null,
           "Locked": false
         }
@@ -118,6 +136,7 @@
     {
       "Name": "Ancient Tomb",
       "Description": "The heart of the ancient tomb. Before you lies countless treasures. In the center of the room rests the ancient king in his coffin.",
+      "Id": 2005,
       "EndPoint": true,
       "Items": [],
       "Exits": {
